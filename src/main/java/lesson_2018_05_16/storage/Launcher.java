@@ -6,11 +6,11 @@ public class Launcher {
         Storage storage = new Storage();
 
         Writer writer = new Writer(storage);
-        new Thread(writer).start();
+        new Thread(writer, "writer").start();
 
         Thread[] readers = new Thread[4];
         for (int i = 0; i < readers.length; ++i) {
-            readers[i] = new Thread(new Reader(storage));
+            readers[i] = new Thread(new Reader(storage), "reader" + i);
         }
 
         for (Thread reader : readers) {

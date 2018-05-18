@@ -16,7 +16,7 @@ public class Writer implements Runnable {
     @SneakyThrows
     public void run() {
         for (int i = 0; i < 5; ++i) {
-            storage.setString(String.valueOf(i));
+            storage.setString("newString " + String.valueOf(i));
             TimeUnit.SECONDS.sleep(3);
         }
     }
