@@ -15,11 +15,11 @@ public class Storage {
     public void setString(String newValue) {
         String threadName = Thread.currentThread().getName();
 
+        isWriting = true;
         synchronized (this) {
             while (readingThreads != 0) {
                 wait();
             }
-            isWriting = true;
             doWriting(newValue, threadName);
             isWriting = false;
             notifyAll();
